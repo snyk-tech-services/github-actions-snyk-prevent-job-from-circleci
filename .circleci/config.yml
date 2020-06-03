@@ -1,0 +1,98 @@
+version: 2.1
+orbs:
+    snyk: snyk/snyk@0.0.8
+jobs:
+    # build-test-monitor:
+    #     docker:
+    #         - image: circleci/node:latest
+    #     steps:
+    #         - checkout
+    #         # - run: npm install
+    #         - run: npm test
+    #         - snyk/scan:
+    #             fail-on-issues: true
+    #             monitor-on-build: true
+    #             token-variable: SNYK_TOKEN
+    #         - run: npx tsc
+    build-test:
+        docker:
+            - image: circleci/node:latest
+        steps:
+            - checkout
+            #- run: npm install
+            - run: npm test
+            - snyk/scan:
+                fail-on-issues: false
+                monitor-on-build: false
+                token-variable: SNYK_TOKEN
+            - run: snyk test --print-deps --json > snykTestResults || true
+            - store_artifacts:
+                path: snykTestResults
+                destination: snykTestResults
+            - run: npx tsc
+    build-test-2:
+        docker:
+            - image: circleci/node:latest
+        steps:
+            - checkout
+            #- run: npm install
+            - run: npm test
+            - snyk/scan:
+                fail-on-issues: false
+                monitor-on-build: false
+                token-variable: SNYK_TOKEN
+            - run: npx tsc
+    build-test-3:
+        docker:
+            - image: circleci/node:latest
+        steps:
+            - checkout
+            #- run: npm install
+            - run: npm test
+            - snyk/scan:
+                fail-on-issues: false
+                monitor-on-build: false
+                token-variable: SNYK_TOKEN
+            - run: npx tsc
+
+workflows:
+    version: 2.1
+    # nightly:
+    #     triggers:
+    #       - schedule:
+    #           cron: "0 0 * * *"
+    #           filters:
+    #             branches:
+    #               only:
+    #                 - master
+    #     jobs:
+    #         - build-test-monitor
+    # build-test-monitor:
+    #     jobs:
+    #         - build-test-monitor:
+    #             filters:
+    #                 branches:
+    #                     only:
+    #                         - master
+    wf-build-test:
+        jobs:
+            - build-test:
+                context: SNYK
+                filters:
+                    branches:
+                        ignore:
+                            - master
+    wf-build-test-2:
+        jobs:
+            - build-test-2:
+                context: SNYK
+                filters:
+                    branches:
+                        ignore:
+                            - master
+            - build-test-3:
+                context: SNYK
+                filters:
+                    branches:
+                        ignore:
+                            - master

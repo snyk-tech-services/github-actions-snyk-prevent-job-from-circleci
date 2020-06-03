@@ -1,0 +1,31 @@
+name: 'Snyk Prevent '
+description: 'Snyk Prevent for project built and Snyk tested in CircleCI'
+inputs:
+  ghToken:
+    description: 'Github token'
+    required: true
+    default: ''
+  snykToken:
+    description: 'snyk token'
+    required: true
+    default: ''
+  circleCIToken:
+    description: 'CircleCI token'
+    required: true
+    default: ''
+  workflowName:
+    description: 'CircleCI Workflow Name running snyk test'
+    required: true
+    default: 'snykWorkflow'
+  snykTestOutputFilename:
+    description: 'Artifact Filename containing the Snyk test --json output'
+    required: true
+    default: 'snykTestResults'
+  timeout:
+    description: 'Timeout till we stop waiting for CircleCI job to complete'
+    required: false
+    default: '60000'
+outputs:
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
