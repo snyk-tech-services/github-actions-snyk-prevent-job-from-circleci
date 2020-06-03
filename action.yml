@@ -16,7 +16,7 @@ inputs:
   workflowName:
     description: 'CircleCI Workflow Name running snyk test'
     required: true
-    default: 'snykWorkflow'
+    default: 'workflow'
   snykTestOutputFilename:
     description: 'Artifact Filename containing the Snyk test --json output'
     required: true
