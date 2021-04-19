@@ -14,6 +14,7 @@
 <p align="center">
   <a href="https://snyk.io/test/github/snyk/snyk"><img src="https://snyk.io/test/github/snyk/snyk/badge.svg" alt="Known Vulnerabilities"/></a>
   <a href="https://snyk.io/features/"><img src="https://badgen.net/npm/dm/snyk" alt="Monthly Downloads"/></a>
+  <a href="https://snyk.io/advisor/npm-package/snyk"><img src="https://snyk.io/advisor/npm-package/snyk/badge.svg" alt="Snyk CLI on the Snyk Advisor></a>
 </p>
 
 ---
@@ -49,7 +50,7 @@ snyk [options] [command] [package]
 
 Run `snyk --help` to get a quick overview of all commands or for full details on the CLI read the snyk.io [CLI docs](https://snyk.io/docs/using-snyk?utm_campaign=docs&utm_medium=github&utm_source=cli).
 
-The package argument is optional. If no package is given, Snyk will run the command against the current working directory allowing you test you non-public applications.
+The package argument is optional. If no package is given, Snyk will run the command against the current working directory allowing you to test your non-public applications.
 
 ## Features
 
